@@ -1,6 +1,6 @@
 import AddOutlinedIcon from "@mui/icons-material/AddOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import { Box, Card, CardContent, CardMedia, IconButton, Typography } from "@mui/material";
+import { Box, Card, CardContent, CardMedia, IconButton, Typography, useMediaQuery, useTheme } from "@mui/material";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useMutation } from "react-query";
@@ -77,6 +77,9 @@ const ProductCard = ({ good }) => {
     setOpen(false);
   };
 
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <Box>
       <Card
@@ -91,19 +94,10 @@ const ProductCard = ({ good }) => {
           overflow: "hidden",
         }}
       >
-        <div
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "160px",
-          }}
-        ></div>
         <CardMedia
           component="img"
           alt={good.title}
-          height="200px"
+          height={isMobile ? "150px" : "200px"}
           image={good.media[0]}
           title={good.title}
           sx={{
@@ -181,7 +175,7 @@ const ProductCard = ({ good }) => {
               display: "flex",
               padding: "20px",
               backgroundColor: "white",
-              position: "relative", // Add position relative
+              position: "relative",
               boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)",
             }}
             onClick={(e) => e.stopPropagation()}
@@ -204,9 +198,9 @@ const ProductCard = ({ good }) => {
             </Box>
             <Typography
               sx={{
-                position: "absolute", // Set position absolute
-                bottom: "10px", // Align to the bottom
-                right: "10px", // Align to the right
+                position: "absolute",
+                bottom: "10px",
+                right: "10px",
                 color: "darkViolet",
                 textAlign: "end",
               }}
