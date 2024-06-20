@@ -317,7 +317,6 @@ export default function SearchAppBar() {
               </>
             )}
 
-            {/* Mobile Button moved to the end */}
             {isMobile && (
               <Button
                 sx={{
@@ -358,7 +357,6 @@ export default function SearchAppBar() {
           )}
         </AppBar>
 
-        {/* Additional content for mobile view */}
         {isMobile && (
           <Box sx={{ display: "flex", width: "150%", paddingRight: "5%", height: "5vh" }}>
             <Search>
